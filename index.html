@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dev.bug — Bugs, news &amp; opinions for developers</title>
+  <meta name="description" content="dev.bug: news, critical bug reports and opinions for developers.">
+  <meta name="theme-color" content="#0E1014">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Iconos (sprite SVG) -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-bug" viewBox="0 0 24 24"><path d="M8 2l1.9 1.9M14.1 3.9L16 2"/><path d="M9 7.1V6a3 3 0 0 1 6 0v1.1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6z"/><path d="M12 20v-9"/><path d="M6.5 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M21 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+    <symbol id="i-news" viewBox="0 0 24 24"><path d="M4 4h13a1 1 0 0 1 1 1v14a2 2 0 0 0 2 2H6a2 2 0 0 1-2-2z"/><path d="M18 8h2v11a2 2 0 0 1-2 2"/><path d="M8 8h6M8 12h6M8 16h4"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+  </svg>
+
+  <!-- Menú lateral -->
+  <div class="overlay" data-close></div>
+  <aside class="drawer" id="drawer" aria-label="Main menu">
+    <div class="drawer__head">
+      <span class="logo">dev<span class="dot">.</span>bug</span>
+      <button class="icon-btn" data-close aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+    <nav>
+      <a href="index.html" aria-current="page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-news"/></svg>News (desktop)</a>
+      <a href="movil-inicio.html"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg>Bugs app (mobile)</a>
+      <a href="movil-detalle.html"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-bug"/></svg>Bug #1042 detail</a>
+    </nav>
+    <small>dev.bug · UI prototype</small>
+  </aside>
+
+  <header class="site-header">
+    <div class="container">
+      <button class="icon-btn" data-open-drawer aria-controls="drawer" aria-expanded="false" aria-label="Open menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+      <a href="index.html" class="logo" aria-label="dev.bug home">dev<span class="dot">.</span>bug</a>
+      <label class="search">
+        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"/></svg>
+        <span class="visually-hidden">Search</span>
+        <input type="search" placeholder="Search bugs, news, people…">
+      </label>
+      <a href="#" class="btn btn--danger btn--sm report-btn" data-soon="Bug reporting" aria-label="Report a bug">
+        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-bug"/></svg><span>Report a bug</span>
+      </a>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Categories">
+    <div class="container" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-filter="all">General News</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="tech">Tech News</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="bugs">Bugs</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="opinions">Opinions</button>
+    </div>
+  </nav>
+
+  <main class="home">
+    <div class="container">
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="illus">
+          <svg viewBox="0 0 270 226" role="img" aria-label="Monitor showing three alert signs">
+            <rect x="1.5" y="1.5" width="267" height="167" rx="14" fill="#1D222B" stroke="#8D95A5" stroke-width="3"/>
+            <rect x="14" y="14" width="242" height="142" rx="6" fill="#0E1014"/>
+            <g class="alert-mark" fill="#F5B83D"><rect x="67" y="46" width="16" height="54" rx="8"/><circle cx="75" cy="116" r="8"/></g>
+            <g class="alert-mark" fill="#FF5A4E"><rect x="127" y="46" width="16" height="54" rx="8"/><circle cx="135" cy="116" r="8"/></g>
+            <g class="alert-mark" fill="#F5B83D"><rect x="187" y="46" width="16" height="54" rx="8"/><circle cx="195" cy="116" r="8"/></g>
+            <rect x="120" y="170" width="30" height="40" fill="#8D95A5"/>
+            <ellipse cx="135" cy="214" rx="60" ry="10" fill="#8D95A5"/>
+          </svg>
+        </div>
+
+        <div class="headline">
+          <span class="chip chip--bug chip--lg">Critical · Live</span>
+          <h1 id="hero-title">Critical Bug Found!</h1>
+          <p>A NullPointerException in payments-api is breaking checkout for 12% of users. The team traced it to an unvalidated parameter in <code class="mono">my_code()</code> and a fix is in review.</p>
+          <div class="meta">
+            <span class="mono c-info">#BUG-1042</span>
+            <span class="mono">payments-api</span>
+            <span class="meta__time"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-clock"/></svg>12 min ago</span>
+          </div>
+          <a href="movil-detalle.html" class="btn btn--light">Read the full report →</a>
+        </div>
+
+        <aside class="latest" aria-labelledby="latest-title">
+          <h2 class="label" id="latest-title">Latest</h2>
+          <ul>
+            <li><time>10:42</time><a href="#" data-soon="Article">Memory leak in websocket pool patched</a></li>
+            <li><time>09:15</time><a href="#" data-soon="Article">New compiler release cuts build times by 30%</a></li>
+            <li><time>08:30</time><a href="#" data-soon="Article">Opinion: stop shipping on Fridays</a></li>
+            <li><time>Yesterday</time><a href="#" data-soon="Article">CI outage post-mortem published</a></li>
+            <li><time>Yesterday</time><a href="#" data-soon="Article">3 bugs closed in auth-service</a></li>
+          </ul>
+        </aside>
+      </section>
+
+      <section aria-labelledby="more-title">
+        <div class="section-head">
+          <h2 id="more-title">More stories</h2>
+          <a href="#" class="link" data-soon="Archive">View all →</a>
+        </div>
+        <div class="stories">
+          <a href="#" class="story" data-cat="tech" data-soon="Article">
+            <span class="story__thumb bg-info"><svg class="icon" aria-hidden="true"><use href="#i-activity"/></svg></span>
+            <div>
+              <span class="story__cat t-info">Tech News</span>
+              <h3>Edge functions now boot 2× faster on cold starts</h3>
+              <p>5 min read · by Ana R.</p>
+            </div>
+          </a>
+          <a href="#" class="story" data-cat="bugs" data-soon="Bug #1038">
+            <span class="story__thumb bg-warn"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg></span>
+            <div>
+              <span class="story__cat t-warn">Bugs</span>
+              <h3>Race condition in checkout queue drops orders</h3>
+              <p>#BUG-1038 · High priority</p>
+            </div>
+          </a>
+          <a href="#" class="story" data-cat="general" data-soon="Article">
+            <span class="story__thumb bg-ok"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg></span>
+            <div>
+              <span class="story__cat t-ok">General News</span>
+              <h3>Open-source maintainers get a new funding program</h3>
+              <p>4 min read · by Luis M.</p>
+            </div>
+          </a>
+          <a href="#" class="story" data-cat="opinions" data-soon="Article">
+            <span class="story__thumb bg-bug"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></span>
+            <div>
+              <span class="story__cat t-bug">Opinions</span>
+              <h3>Every NullPointerException is a design smell</h3>
+              <p>Opinion · 7 min read</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>dev.bug © 2026 — bugs, news &amp; opinions for developers</span>
+      <nav aria-label="Footer">
+        <a href="#" data-soon="About">About</a>
+        <a href="#" data-soon="Contact">Contact</a>
+        <a href="movil-inicio.html">Mobile app</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
